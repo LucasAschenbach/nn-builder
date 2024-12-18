@@ -119,10 +119,14 @@ To add support for a new layer type, follow these steps:
    ```
 
 2. **Export the New Layer**:
-   Add your new layer to `domain/layers/index.ts`:
-   ```typescript
-   export { BatchNormLayer } from './BatchNormLayer';
-   ```
+   - Add your new layer to `domain/layers/index.ts`:
+     ```typescript
+     export { BatchNormLayer } from './BatchNormLayer';
+     ```
+   - Add your new layer to `LayerType`:
+     ```typescript
+     export type LayerType = ... | 'batchnorm';
+     ```
 
 3. **Integrate the Layer**:
    - Update the `handleAddLayer` function in `page.tsx` to include the new layer type.
@@ -134,6 +138,15 @@ To add support for a new layer type, follow these steps:
      >
        BatchNorm
      </button>
+     ```
+   - Add a layer editor in `components/LayerEditor.tsx`
+     ```tsx
+     {/* Batchnorm Editor */}
+     {layer instanceof BatchNormLayer && (
+       <div className="text-sm text-gray-600">
+         <p>BatchNorm doesn&apos;t have any parameters to configure.</p>
+       </div>
+     )}
      ```
 
 4. **Test Your Layer**:
