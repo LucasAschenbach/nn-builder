@@ -5,3 +5,4 @@ export { LinearLayer } from './LinearLayer';
 export { ActivationLayer } from './ActivationLayer';
 export { InputLayer } from './InputLayer';
 export { FlattenLayer } from './FlattenLayer';
+export { BatchNormLayer } from './BatchNormLayer';

@@ -12,8 +12,10 @@ import { ConvolutionLayer } from '@/domain/layers/ConvolutionLayer';
 import { MaxPoolLayer } from '@/domain/layers/MaxPoolLayer';
 import { LinearLayer } from '@/domain/layers/LinearLayer';
 import { ActivationLayer } from '@/domain/layers/ActivationLayer';
+import { FlattenLayer } from '@/domain/layers/FlattenLayer';
+import { BatchNormLayer } from '@/domain/layers/BatchNormLayer';
+import { InputLayer } from '@/domain/layers/InputLayer';
 import { LayerType } from '@/components/types'; // type alias
-import { FlattenLayer, InputLayer } from '@/domain/layers';
 
 export default function Home() {
   /**
@@ -76,6 +78,9 @@ export default function Home() {
         break;
       case 'flatten':
         newLayer = new FlattenLayer(inputShape, false);
+        break;
+      case 'batchnorm':
+        newLayer = new BatchNormLayer(inputShape, false);
         break;
       case 'activation':
       default:
@@ -261,6 +266,12 @@ print(model)
                   onClick={() => handleAddLayer("flatten")}
                 >
                   Flatten
+                </button>
+                <button
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={() => handleAddLayer('batchnorm')}
+                >
+                  BatchNorm
                 </button>
                 <button
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100"

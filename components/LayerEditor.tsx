@@ -8,6 +8,7 @@ import { ActivationLayer } from '@/domain/layers/ActivationLayer';
 import { ActivationType } from '@/domain/layers/ActivationLayer';
 import { InputLayer } from '@/domain/layers/InputLayer';
 import { FlattenLayer } from '@/domain/layers/FlattenLayer';
+import { BatchNormLayer } from '@/domain/layers';
 
 interface LayerEditorProps {
   layer: BaseLayer;
@@ -307,6 +308,13 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
       {layer instanceof FlattenLayer && (
         <div className="text-sm text-gray-600">
           <p>Flatten doesn&apos;t have any parameters to configure.</p>
+        </div>
+      )}
+
+      {/* Batchnorm Editor */}
+      {layer instanceof BatchNormLayer && (
+        <div className="text-sm text-gray-600">
+          <p>BatchNorm doesn&apos;t have any parameters to configure.</p>
         </div>
       )}
 
