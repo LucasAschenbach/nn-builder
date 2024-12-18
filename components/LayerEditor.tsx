@@ -40,65 +40,118 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
       {layer instanceof ConvolutionLayer && (
         <div className="space-y-2">
           <div>
-            <label className="block text-sm">Filters</label>
-            <input
-              type="range"
-              min={1}
-              max={256}
-              value={layer.filters}
-              onChange={(e) => {
-                layer.filters = Number(e.target.value);
-                onChange(layer);
-              }}
-              disabled={layer.locked}
-            />
-            <span className="ml-2">{layer.filters}</span>
+          <label className="block text-sm font-medium">Filters</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={1}
+                max={256}
+                value={layer.filters}
+                onChange={(e) => {
+                  layer.filters = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={1}
+                max={256}
+                value={layer.filters}
+                onChange={(e) => {
+                  layer.filters = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
           </div>
           <div>
-            <label className="block text-sm">Kernel Size</label>
-            <input
-              type="range"
-              min={1}
-              max={11}
-              step={2}
-              value={layer.kernelSize}
-              onChange={(e) => {
-                layer.kernelSize = Number(e.target.value);
-                onChange(layer);
-              }}
-              disabled={layer.locked}
-            />
-            <span className="ml-2">{layer.kernelSize}</span>
+          <label className="block text-sm font-medium">Kernel Size</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={1}
+                max={11}
+                step={2}
+                value={layer.kernelSize}
+                onChange={(e) => {
+                  layer.kernelSize = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={1}
+                max={11}
+                step={2}
+                value={layer.kernelSize}
+                onChange={(e) => {
+                  layer.kernelSize = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
           </div>
           <div>
-            <label className="block text-sm">Stride</label>
-            <input
-              type="range"
-              min={1}
-              max={4}
-              value={layer.stride}
-              onChange={(e) => {
-                layer.stride = Number(e.target.value);
-                onChange(layer);
-              }}
-              disabled={layer.locked}
-            />
-            <span className="ml-2">{layer.stride}</span>
+            <label className="block text-sm font-medium">Stride</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={1}
+                max={4}
+                value={layer.stride}
+                onChange={(e) => {
+                  layer.stride = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={1}
+                max={4}
+                value={layer.stride}
+                onChange={(e) => {
+                  layer.stride = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
           </div>
           <div>
-            <label className="block text-sm">Padding</label>
-            <input
-              type="range"
-              min={0}
-              max={5}
-              value={layer.padding}
-              onChange={(e) => {
-                layer.padding = Number(e.target.value);
-                onChange(layer);
-              }}
-              disabled={layer.locked}
-            />
-            <span className="ml-2">{layer.padding}</span>
+            <label className="block text-sm font-medium">Padding</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={0}
+                max={5}
+                value={layer.padding}
+                onChange={(e) => {
+                  layer.padding = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={0}
+                max={5}
+                value={layer.padding}
+                onChange={(e) => {
+                  layer.padding = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
           </div>
         </div>
       )}
@@ -107,34 +160,60 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
       {layer instanceof MaxPoolLayer && (
         <div className="space-y-2">
           <div>
-            <label className="block text-sm">Pool Size</label>
-            <input
-              type="range"
-              min={1}
-              max={5}
-              value={layer.poolSize}
-              onChange={(e) => {
-                layer.poolSize = Number(e.target.value);
-                onChange(layer);
-              }}
-              disabled={layer.locked}
-            />
-            <span className="ml-2">{layer.poolSize}</span>
+            <label className="block text-sm font-medium">Pool Size</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={1}
+                max={5}
+                value={layer.poolSize}
+                onChange={(e) => {
+                  layer.poolSize = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={1}
+                max={5}
+                value={layer.poolSize}
+                onChange={(e) => {
+                  layer.poolSize = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
           </div>
           <div>
-            <label className="block text-sm">Stride</label>
-            <input
-              type="range"
-              min={1}
-              max={5}
-              value={layer.stride}
-              onChange={(e) => {
-                layer.stride = Number(e.target.value);
-                onChange(layer);
-              }}
-              disabled={layer.locked}
-            />
-            <span className="ml-2">{layer.stride}</span>
+            <label className="block text-sm font-medium">Stride</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={1}
+                max={5}
+                value={layer.stride}
+                onChange={(e) => {
+                  layer.stride = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={1}
+                max={5}
+                value={layer.stride}
+                onChange={(e) => {
+                  layer.stride = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
           </div>
         </div>
       )}
@@ -142,19 +221,32 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
       {/* Linear Editor */}
       {layer instanceof LinearLayer && (
         <div>
-          <label className="block text-sm">Units</label>
-          <input
-            type="range"
-            min={1}
-            max={1024}
-            value={layer.units}
-            onChange={(e) => {
-              layer.units = Number(e.target.value);
-              onChange(layer);
-            }}
-            disabled={layer.locked}
-          />
-          <span className="ml-2">{layer.units}</span>
+          <label className="block text-sm font-medium">Units</label>
+            <div className="flex items-center space-x-2">
+              <input
+                type="range"
+                min={1}
+                max={1024}
+                value={layer.units}
+                onChange={(e) => {
+                  layer.units = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+              />
+              <input
+                type="number"
+                min={1}
+                max={1024}
+                value={layer.units}
+                onChange={(e) => {
+                  layer.units = Number(e.target.value);
+                  onChange(layer);
+                }}
+                disabled={layer.locked}
+                className="w-16 border rounded text-center"
+              />
+            </div>
         </div>
       )}
 
