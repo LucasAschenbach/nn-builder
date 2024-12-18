@@ -6,6 +6,8 @@ import { MaxPoolLayer } from '@/domain/layers/MaxPoolLayer';
 import { LinearLayer } from '@/domain/layers/LinearLayer';
 import { ActivationLayer } from '@/domain/layers/ActivationLayer';
 import { ActivationType } from '@/domain/layers/ActivationLayer';
+import { InputLayer } from '@/domain/layers/InputLayer';
+import { FlattenLayer } from '@/domain/layers/FlattenLayer';
 
 interface LayerEditorProps {
   layer: BaseLayer;
@@ -27,6 +29,7 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
           type="checkbox"
           checked={layer.locked}
           onChange={handleLockToggle}
+          disabled={layer instanceof InputLayer}
         />
         <span>Locked</span>
       </label>
@@ -35,6 +38,56 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
         <p>Input Shape: {layer.inputShape.dims.join('x')}</p>
         <p>Output Shape: {layer.outputShape.dims.join('x')}</p>
       </div>
+
+      {layer instanceof InputLayer && (
+        <div className="space-y-4">
+          <p className="text-sm text-gray-700 mb-2">Specify the input dimensions [C, H, W]:</p>
+          <div className="flex space-x-2">
+            <div>
+              <label className="block text-xs text-gray-700">Channels</label>
+              <input
+                type="number"
+                value={layer.inputShape.dims[0]}
+                min={1}
+                onChange={(e) => {
+                  layer.inputShape.dims[0] = Number(e.target.value);
+                  layer.calcOutputShape();
+                  onChange(layer);
+                }}
+                className="w-16 border rounded text-center"
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-gray-700">Height</label>
+              <input
+                type="number"
+                value={layer.inputShape.dims[1]}
+                min={1}
+                onChange={(e) => {
+                  layer.inputShape.dims[1] = Number(e.target.value);
+                  layer.calcOutputShape();
+                  onChange(layer);
+                }}
+                className="w-16 border rounded text-center"
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-gray-700">Width</label>
+              <input
+                type="number"
+                value={layer.inputShape.dims[2]}
+                min={1}
+                onChange={(e) => {
+                  layer.inputShape.dims[2] = Number(e.target.value);
+                  layer.calcOutputShape();
+                  onChange(layer);
+                }}
+                className="w-16 border rounded text-center"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Convolution Editor */}
       {layer instanceof ConvolutionLayer && (
@@ -247,6 +300,13 @@ const LayerEditor: FC<LayerEditorProps> = ({ layer, onChange }) => {
                 className="w-16 border rounded text-center"
               />
             </div>
+        </div>
+      )}
+
+      {/* Flatten Editor */}
+      {layer instanceof FlattenLayer && (
+        <div className="text-sm text-gray-600">
+          <p>Flatten doesn&apos;t have any parameters to configure.</p>
         </div>
       )}
 

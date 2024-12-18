@@ -47,9 +47,7 @@ const SortableLayerItem: FC<SortableLayerItemProps> = ({
         )}
         <div>
           <div className="font-semibold">
-            {index === 0 ? 'Input Layer' 
-             : isLast ? 'Output Layer'
-             : layer.typeName.toUpperCase()}
+            {`${layer.typeName.toUpperCase() + (isLast ? ' (Output)' : '')}`}
           </div>
           <div className="text-sm text-gray-600">
             In: {layer.inputShape.dims.join('x')} → Out: {layer.outputShape.dims.join('x')}

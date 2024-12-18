@@ -1,1 +1,1 @@
-export type LayerType = 'convolution' | 'maxpool' | 'linear' | 'activation';
+export type LayerType = 'convolution' | 'maxpool' | 'linear' | 'activation' | 'flatten';

@@ -13,6 +13,7 @@ import { MaxPoolLayer } from '@/domain/layers/MaxPoolLayer';
 import { LinearLayer } from '@/domain/layers/LinearLayer';
 import { ActivationLayer } from '@/domain/layers/ActivationLayer';
 import { LayerType } from '@/components/types'; // type alias
+import { FlattenLayer, InputLayer } from '@/domain/layers';
 
 export default function Home() {
   /**
@@ -21,7 +22,7 @@ export default function Home() {
    *  - Last layer locked: a LinearLayer outputting dimension 10
    */
   const [layers, setLayers] = useState<BaseLayer[]>([
-    new ConvolutionLayer({ dims: [3, 224, 224] }, 3, 3, 1, 1, true),  // locked input
+    new InputLayer({ dims: [3, 224, 224] }),                          // locked input
     new LinearLayer({ dims: [3, 224, 224] }, 10, true),               // locked output
   ]);
 
@@ -72,6 +73,9 @@ export default function Home() {
         break;
       case 'linear':
         newLayer = new LinearLayer(inputShape, 64, false);
+        break;
+      case 'flatten':
+        newLayer = new FlattenLayer(inputShape, false);
         break;
       case 'activation':
       default:
@@ -182,16 +186,39 @@ print(model)
 
         {/* Scrollable layer list */}
         <div className="flex-1 overflow-y-auto h-0 p-4 bg-white">
+          {/* Input Card (not draggable) */}
+          <div
+            className={`flex items-center justify-between p-2 rounded 
+                ${
+                  selectedLayerId === layers[0].id
+                    ? "bg-blue-100"
+                    : "bg-gray-100 hover:bg-gray-200"
+                }
+              `}
+            onClick={() => handleSelectLayer(layers[0].id)}
+          >
+            <div>
+              <div className="font-semibold">Input</div>
+              <div className="text-sm text-gray-600">
+                Shape: {layers[0].outputShape.dims.join("x")}
+              </div>
+              <div className="text-xs text-red-500">LOCKED</div>
+            </div>
+          </div>
+
+          <div className="h-[1px] bg-gray-200 m-2" />
+          
+          {/* Layer List */}
           <DndContext
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
           >
             <SortableContext
-              items={layers.map((l) => l.id)}
+              items={layers.slice(1).map((l) => l.id)}
               strategy={verticalListSortingStrategy}
             >
               <LayerList
-                layers={layers}
+                layers={layers.slice(1)}
                 selectedLayerId={selectedLayerId}
                 onSelectLayer={handleSelectLayer}
                 onDeleteLayer={handleDeleteLayer}
@@ -228,6 +255,12 @@ print(model)
                   onClick={() => handleAddLayer("linear")}
                 >
                   Linear
+                </button>
+                <button
+                  className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={() => handleAddLayer("flatten")}
+                >
+                  Flatten
                 </button>
                 <button
                   className="block w-full text-left px-4 py-2 hover:bg-gray-100"
