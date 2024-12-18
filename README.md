@@ -1,4 +1,4 @@
-<a href="https://chat.vercel.ai/">
+<a href="https://lucasaschenbach.github.io/nn-builder/">
   <h1 align="center">Neural Network Builder</h1>
 </a>
 
