@@ -7,7 +7,6 @@ import { GripVertical } from 'lucide-react'; // optional icon lib
 
 interface SortableLayerItemProps {
   layer: BaseLayer;
-  index: number;
   isLast: boolean;
   isSelected: boolean;
   onSelectLayer: () => void;
@@ -16,7 +15,6 @@ interface SortableLayerItemProps {
 
 const SortableLayerItem: FC<SortableLayerItemProps> = ({
   layer,
-  index,
   isLast,
   isSelected,
   onSelectLayer,

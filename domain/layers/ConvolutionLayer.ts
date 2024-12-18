@@ -19,7 +19,7 @@ export class ConvolutionLayer extends BaseLayer {
   }
 
   calcOutputShape(): void {
-    const [c, h, w] = this.inputShape.dims;
+    const [, h, w] = this.inputShape.dims;
     const outH = Math.floor((h + 2 * this.padding - this.kernelSize) / this.stride + 1);
     const outW = Math.floor((w + 2 * this.padding - this.kernelSize) / this.stride + 1);
     this.outputShape = { dims: [this.filters, outH, outW] };

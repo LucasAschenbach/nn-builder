@@ -21,7 +21,6 @@ const LayerList: FC<LayerListProps> = ({
         <SortableLayerItem
           key={layer.id}
           layer={layer}
-          index={index}
           isLast={layers.length === index+1}
           isSelected={selectedLayerId === layer.id}
           onSelectLayer={() => onSelectLayer(layer.id)}
